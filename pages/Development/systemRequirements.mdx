@@ -1,12 +1,47 @@
+import { FileTree, Steps, Callout} from 'nextra/components'
+
+
+
 # System Requirements
 
+<FileTree>
 To ensure a smooth development and operation of the project, developers need to meet the following hardware and software prerequisites:
+
 - **Node.js:** Version 14.x or newer. This is essential for supporting the latest JavaScript features and efficient package management with npm.
 - **NPM:** Version 6.x or newer, which typically comes bundled with Node.js installations. This is used for managing project dependencies.
 - **Git:** Version 2.x or higher for source control management, enabling collaboration and version tracking.
 - **Text Editor or IDE:** We recommend Visual Studio Code, Atom, or Sublime Text for their extensive support for JavaScript and React development.
 
 These requirements are designed to provide a baseline that can support the advanced features and functionalities of our project, ensuring developers can work effectively without performance bottlenecks.
+</FileTree>
 
+Before to start, the following requirements must be installed on your computer:
 
-## Node.js
+<Steps>
+
+### Node.js
+Only Active LTS or Maintenance LTS versions are supported (currently v18 and v20). Odd-number releases of Node, known as "current" versions of Node.js, are not supported (e.g. v19, v21).
+Your preferred Node.js package manager:
+npm (v6 and above)
+yarn
+
+<Callout>If you want to know more, read https://nodejs.org/en</Callout>
+### Npm
+ To manage JavaScript packages, installing npm (Node Package Manager) is essential as it facilitates the installation, updating, and removal of packages in Node.js environments. It provides access to a vast registry of open-source libraries, simplifying the development process. Additionally, npm enhances project dependency management, ensuring consistent and reliable builds.
+```tsx
+npm install
+```
+
+### Git
+Used for version control management, it enables collaboration and version tracking. Ensure you have Git version 2.x or higher installed.
+For the terminal command to check the installation and version of Git, you can include:
+```tsx
+git --version
+```
+This command checks the current version of [Git website](https://git-scm.com/) installed on your machine. If readers need to install or update Git, you can direct them to visit the official Git website for detailed installation instructions.
+
+### Visual Studio Code
+We have used VSCode as code editor for the project, but feel free to use any text editor of your choice.
+</Steps>
+
+## Installing React and Libraries
