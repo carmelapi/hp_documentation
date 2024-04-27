@@ -26,22 +26,77 @@ npm (v6 and above)
 yarn
 
 <Callout>If you want to know more, read https://nodejs.org/en</Callout>
-### Npm
+#### Npm
  To manage JavaScript packages, installing npm (Node Package Manager) is essential as it facilitates the installation, updating, and removal of packages in Node.js environments. It provides access to a vast registry of open-source libraries, simplifying the development process. Additionally, npm enhances project dependency management, ensuring consistent and reliable builds.
 ```tsx
 npm install
 ```
-
-### Git
+#### Git
 Used for version control management, it enables collaboration and version tracking. Ensure you have Git version 2.x or higher installed.
 For the terminal command to check the installation and version of Git, you can include:
 ```tsx
 git --version
 ```
 This command checks the current version of [Git website](https://git-scm.com/) installed on your machine. If readers need to install or update Git, you can direct them to visit the official Git website for detailed installation instructions.
-
-### Visual Studio Code
+#### Visual Studio Code
 We have used VSCode as code editor for the project, but feel free to use any text editor of your choice.
 </Steps>
 
+
 ## Installing React and Libraries
+This section of the documentation guides you through the installation of React and the necessary libraries for the project. Ensure that you meet the system prerequisites before proceeding with the installation.  
+To install React along with all the required dependencies for the project, follow these steps:
+
+<Steps>
+
+### Clone the repository: 
+Clone the project repository to your local system using:
+```tsx
+git clone git@github.com:fedux-collab-team-6/historical-parts.git
+cd historical-parts
+```
+### Development Dependencies
+The following are development dependencies used to optimize and test the project:
+**Vite and @vitejs/plugin-react:** Modern tools for optimizing the development process and fast module bundling.
+```tsx
+npm create vite@latest
+```
+**ESLint and Prettier** Tools to keep your code clean and consistent.
+**Jest** Framework for unit testing in JavaScript.
+```tsx
+npm install --save-dev jest
+```
+
+
+### Install dependencies
+**React and React-DOM:** Libraries for building the user interface of the project.
+```tsx
+npm install react react-dom
+```
+**@mui/icons-material:** Material-UI component libraries for React to build 
+```tsx
+npm install @mui/icons-material
+
+// If you are not already using Material UI in your project, you can add it with:
+npm install @mui/material
+```
+**Redux and React-Redux:** Manages navigation in React applications
+```tsx
+npm install @reduxjs/toolkit
+```
+**Axios:** Library for making HTTP requests from the browser.
+```tsx
+npm install axios
+```
+**Framer Motion:** Library for adding simple and powerful animations to React elements.
+```tsx
+npm install framer-motion
+```
+**Swiper and Slick Carousel:** Libraries for implementing responsive carousels and sliders.
+```tsx
+npm install slick-carousel
+```
+
+
+<Callout>Make sure to regularly run **npm update** to keep all dependencies up to date.</Callout>
+</Steps>
