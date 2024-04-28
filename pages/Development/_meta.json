@@ -3,7 +3,6 @@
   "systemRequirements": "System Requirement",
   "api": "API",
   "designSystem":"Design System",
-  "components": "Components",
   "testJest": "Test",
   "deployment":"Deployment"
     

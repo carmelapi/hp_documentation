@@ -1,21 +1,73 @@
 import { Cards, Card } from 'nextra/components'
 
-# API Documentation
-This documentation covers the essential aspects of our APIs, which are powered by Strapi, the headless CMS. Our API setup allows developers to use their preferred tools and frameworks, providing a flexible way for editors to manage and distribute content.  
+# Historical Parts API Documentation
 
-We have implemented Strapi as our CMS to enhance content management and distribution. Strapi's flexible plugin system allows us to customize every aspect of the CMS to fit our specific use cases, including a built-in user system to manage detailed access for administrators and end-users.
+## Base URL
+`https://historical-parts.onrender.com/api/doors`
 
 ## Authentication
-Currently, our project setup does not include direct examples of handling authentication in the provided code snippets. Authentication typically involves obtaining a JWT token from Strapi by sending a POST request to the `/auth/local` endpoint, which is not directly shown in the initial setup.
+No authentication required.
 
 ## Endpoints
-Here, we describe the API endpoints we have set up in Strapi, including how to interact with them to manage products, categories, and user data.
 
-Retrieve all products, utilizing Strapi's powerful query capabilities for filtering and pagination.
+### Pickup only
+- **Description**: Retrieves doors available for pickup only.
+- **Method**: GET
+- **Endpoint**: `/api/doors?filters[ShippingOptions][$eq]=Pick up yourself`
 
-  ```http
-  GET /products?pagination[page]=${currentPage}&pagination[pageSize]=${itemsPerPage}&
-  ```
+### Two conditions
+- **Description**: Retrieves doors in good or okay condition.
+- **Method**: GET
+- **Endpoint**: `/api/doors?filters[$or][0][Condition][$eq]=Good condition&filters[$or][1][Condition][$eq]=Okay condition?populate=*`
+
+### Materials
+- **Description**: Retrieves doors made of steel or aluminum priced below 600 and available for pickup in Stockholm.
+- **Method**: GET
+- **Endpoint**: `/api/doors?filters[Price][$lt]=600&filters[Location][$eq]=Stockholm&filters[ShippingOptions][$eq]=Pick up yourself&filters[$or][0][Material][$eq]=Steel&filters[$or][1][Material][$eq]=Aluminum`
+
+### Less than 600 wood Stockholm and pickup only
+- **Description**: Retrieves doors made of wood priced below 600 located in Stockholm and available for pickup only.
+- **Method**: GET
+- **Endpoint**: `/api/doors?filters[Price][$lt]=901&filters[Location][$eq]=Stockholm&filters[ShippingOptions][$eq]=Pick up yourself&filters[$or][0][Material][$eq]=Wood`
+
+### Two styles
+- **Description**: Retrieves doors from the C. 1880s New Renaissance or E. 1900-1910s Art Nouveau styles.
+- **Method**: GET
+- **Endpoint**: `/api/doors?filters[$or][0][Era][$eq]=C. 1880s New Renaissance&filters[$or][1][Era][$eq]=E. 1900-1910s Art Nouveau`
+
+### Price Less than 500 three styles
+- **Description**: Retrieves doors priced below 500 from three different styles: C. 1880s New Renaissance, E. 1900-1910s Art Nouveau, and I. 1940s-1950s Modernism Folkhem Architecture.
+- **Method**: GET
+- **Endpoint**: `/api/doors?filters[Price][$lt]=500&filters[$or][0][Era][$eq]=C. 1880s New Renaissance&filters[$or][1][Era][$eq]=E. 1900-1910s Art Nouveau&filters[$or][2][Era][$eq]=I. 1940s-1950s Modernism Folkhem Architecture`
+
+### Price less than 300 in Stockholm Pickup only
+- **Description**: Retrieves doors priced below 300 located in Stockholm and available for pickup only.
+- **Method**: GET
+- **Endpoint**: `/api/doors?filters[Price][$lt]=300&filters[Location][$eq]=Stockholm&filters[ShippingOptions][$eq]=Pick up yourself`
+
+### Price less than 500
+- **Description**: Retrieves doors priced below 500.
+- **Method**: GET
+- **Endpoint**: `/api/doors?filters[Price][$lt]=500`
+
+### Pickup and Stockholm
+- **Description**: Retrieves doors available for pickup in Stockholm.
+- **Method**: GET
+- **Endpoint**: `/api/doors?filters[ShippingOptions][$eq]=Pick up yourself&filters[Location][$eq]=Stockholm`
+
+### Dropoff and Linköping
+- **Description**: Retrieves doors available for dropoff in Linköping.
+- **Method**: GET
+- **Endpoint**: `/api/doors?filters[ShippingOptions][$eq]=Get a shipping price&filters[Location][$eq]=Linköping`
+
+### Pickup and Stockholm and less than 500
+- **Description**: Retrieves doors priced below 500 available for pickup in Stockholm.
+- **Method**: GET
+- **Endpoint**: `/api/doors?filters[ShippingOptions][$eq]=Pick up yourself&filters[Location][$eq]=Stockholm&filters[Price][$lt]=500`
+
+## Headers
+- **User-Agent**: `insomnia/8.6.1`
+
 
 ### Fetch
 Here is how you might use React hooks to fetch data from our API, using Strapi as the backend.
