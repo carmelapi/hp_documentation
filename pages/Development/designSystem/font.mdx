@@ -45,3 +45,88 @@ From here, you can change any of the text style properties — typeface, font si
 If you’re changing the typeface for your particular project, it’s a good idea to change all text styles at once, rather than just changing them as you’re using them. This will keep everything neat and tidy and will ensure you won’t miss any.
 For larger projects, Figma can take a while to update some styles as they have to cascade down through every component they’re used in. It’s a bit of a pain, but worth it when it’s complete!
 </Callout>
+
+## How we implement it in our code
+To set our typography system, we changed directly under the `theme.colors` section of our configuration file (`tailwind.config.js
+):
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    theme: {},
+    extend: {
+      fontFamily: {
+        raleway: ["Raleway", "sans-serif"],
+      },
+      fontSize: {
+        "5xl": [
+          "2rem",
+          {
+            lineHeight: "2em",
+            fontWeight: "700",
+          },
+        ],
+        "4xl": [
+          "2rem",
+          {
+            lineHeight: "2em",
+            fontWeight: "700",
+          },
+        ],
+        "3xl": [
+          "1.75rem",
+          {
+            lineHeight: "2em",
+            fontWeight: "700",
+          },
+        ],
+        "2xl": [
+          "1.5rem",
+          {
+            lineHeight: "1.75em",
+            fontWeight: "700",
+          },
+        ],
+        xl: [
+          "1.35rem",
+          {
+            lineHeight: "1.75em",
+            fontWeight: "600",
+          },
+        ],
+        lg: [
+          "1.15rem",
+          {
+            lineHeight: "1.75em",
+            fontWeight: "600",
+          },
+        ],
+        base: [
+          ".8rem",
+          {
+            lineHeight: "1.5em",
+            fontWeight: "400",
+          },
+        ],
+        sm: [
+          ".7rem",
+          {
+            lineHeight: "1.25em",
+            fontWeight: "400",
+          },
+        ],
+        xs: [
+          ".5rem",
+          {
+            lineHeight: ".8em",
+            fontWeight: "400",
+          },
+        ],
+      },
+    },
+  },
+  plugins: [],
+};
+```

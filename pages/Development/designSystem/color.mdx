@@ -1,5 +1,4 @@
 # Importance of Color in Design Systems
-
 Colors are essential in design systems, serving both aesthetic and functional purposes. Defining a color palette within a design system enables consistent branding, improves usability, and streamlines development.  
 Incorporating colors into the code of a design system offers several advantages:
 
@@ -17,13 +16,56 @@ For future developers, a well-documented color system within a design system is 
 
 Below is the detailed table of the color scheme from the provided PDF, including the shades for Coral, Spindle, Storm Dust, text, and background colors:
 
-| Category    | 50       | 100      | 200      | 300      | 400-main | 500      | 600      | 700      | 800      | 900      | 950      | Special    |
+| Category    | 50       | 100      | 200      | 300      | 400 | 500      | 600      | 700      | 800      | 900      | 950      | Special    |
 |-------------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|------------|
-| **Coral**   | #fff5ed | #ffe8d5  | #fecdaa  | #fda974  | #fb874f  | #f85717  | #ea3c0c  | #c22a0c  | #9a2312  | #7c2012  | #430d07  |            |
-| **Spindle** | #f2f7fc  | #e2ecf7  | #bcd4ec  | #a9c9e7  | #81add9  | #6392ce  | #4f79c1  | #4567b0  | #3d5590  | #354873  | #242e47  |            |
-| **Storm Dust**| #f5f6f6| #e6e7e7  | #d0d1d1  | #afb1b1  | #878989  | #6c6e6e  | #616363  | #4e4f50  | #444546  | #3c3d3d  | #262626  |            |
+| **Coral**   | #fff5ed | #ffe8d5  | #fecdaa  | #fda974  |Primary: **#fb874f** | #f85717  | #ea3c0c  | #c22a0c  | #9a2312  | #7c2012  | #430d07  |            |
+| **Spindle** | #f2f7fc  | #e2ecf7  | Secondary: **#bcd4ec**  | #a9c9e7  | #81add9  | #6392ce  | #4f79c1  | #4567b0  | #3d5590  | #354873  | #242e47  |            |
+| **Storm Dust**| #f5f6f6| #e6e7e7  | #d0d1d1  | #afb1b1  | #878989  | #6c6e6e  |Neutral: **#616363**  | #4e4f50  | #444546  | #3c3d3d  | #262626  |            |
 | **Text Colors** |      |          |          |          |          |          |          |          |          |          |          | Dark: #0e2843 |
 | **Background Colors** |  |        |          |          |          |          |          |          |          |          |          | Light: #F9F4F2 |
 
 This table outlines the colors used in your project, ensuring a uniform visual style is maintained. The 'Special' column includes colors designated for specific purposes like text and background.
 
+### Example
+
+![Color Palette](../../../public/img/color-palette.png)
+
+## How we implement it in our code
+If you’d like to completely replace the default colors with your own custom colors, add your colors directly under the `theme.colors` section of your configuration file (`tailwind.config.js
+):
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    theme: {},
+    extend: {
+      colors: {
+        coral: {
+          400: "#FB874F",
+        },
+        spindle: {
+          50: "#F2F7FC",
+          100: "#E2ECF7",
+          200: "#BCD4EC",
+          700: "#4567b0",
+          800: "#3D5590",
+          900: "#354873",
+          950: "#242e47",
+        },
+        stormDust: {
+          600: "#616363",
+        },
+        light: {
+          100: "#FCFCFC",
+          200: "#FCF8F0",
+        },
+      },
+    },
+  },
+  plugins: [],
+};
+
+
+```
