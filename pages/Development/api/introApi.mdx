@@ -24,17 +24,9 @@ Here, we describe the API endpoints we have set up in Strapi, including how to i
   Retrieve all products, utilizing Strapi's powerful query capabilities for filtering and pagination.
 
   ```http
-  GET /products?pagination[page]=1&pagination[pageSize]=10
-  Authorization: Bearer your-jwt-token-here
-
+  GET /products?pagination[page]=${currentPage}&pagination[pageSize]=${itemsPerPage}&
 
 ### Products
 
 We utilize Strapi to handle our product listings. The endpoints allow for listing all products with options for filtering and pagination, as well as fetching detailed information on individual products.
 
-
-#### List Products
-
-```http
-GET /products?pagination[page]=1&pagination[pageSize]=10
-Authorization: Bearer your-jwt-token-here
