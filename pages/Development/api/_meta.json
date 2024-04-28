@@ -1,6 +1,3 @@
 {
   "introApi":"Introduction",
-  "strapi":"Strapi",
-  "fetch":"Fetching Data",
-  "backend":"Backend "
-  }
+  "strapi":"Strapi"}
