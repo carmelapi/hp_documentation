@@ -1,14 +1,38 @@
-Welcome to Historical parts
+# Design system
+Welcome to our most comprehensive UI Kit, meticulously crafted using Tailwind CSS. This UI kit serves as a robust foundation for your design system, offering a versatile collection of style guidelines, component variants, website sections, responsive pages, and layouts. Our free version is a gesture of support to the community, aimed at empowering developers and designers to launch impressive projects swiftly.
 
-INTRODUCTION 
+Stay tuned for our full version, which will feature over 400 UI components and more than 50 ready-made landing pages, all based on Tailwind CSS. If you’re interested in accessing the full capabilities of our UI kit, please leave a comment below to be notified upon its release!
 
-Welcome to our most comprehensive UI kit based on Tailwind CSS. 
-Here, you can find a Design system featuring a style guideline, component variants, website sections, responsive pages, dark mode, auto-layout, grid layout and even a full pages.  
-This is our free version to the community and we hope it will help you start with building awesome projects.   
-If you would like to see the full version with 400+ UI components and 50+ ready-made landing pages based on Tailwind CSS, we will be launching soon the full version.   
-Add a comment here if you would like to receive it! 
+## Tailwind Css
+Tailwind CSS works by scanning all of your HTML files, JavaScript components, and any other templates for class names, generating the corresponding styles and then writing them to a static CSS file.  
+It's fast, flexible, and reliable — with zero-runtime.
 
-COLORS
+- Install `tailwindcss` via npm, and create your `tailwind.config.js` file.
+```css
+> npm install -D tailwindcss  
+> npx tailwindcss init
+```
 
-TEXT
+- Add the paths to all of your template files in your `tailwind.config.js` file.
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{html,js}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
 
+- Add the `@tailwind` directives for each of Tailwind’s layers to your main CSS file.
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+- Run the CLI tool to scan your template files for classes and build your CSS.
+```
+npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
+```

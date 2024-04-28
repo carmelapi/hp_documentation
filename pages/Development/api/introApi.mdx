@@ -1,32 +1,138 @@
 import { Cards, Card } from 'nextra/components'
 
 # API Documentation
-
-This documentation covers the essential aspects of our APIs, which are powered by Strapi, the headless CMS. Our API setup allows developers to use their preferred tools and frameworks, providing a flexible way for editors to manage and distribute content.
-
-
-## Introduction
+This documentation covers the essential aspects of our APIs, which are powered by Strapi, the headless CMS. Our API setup allows developers to use their preferred tools and frameworks, providing a flexible way for editors to manage and distribute content.  
 
 We have implemented Strapi as our CMS to enhance content management and distribution. Strapi's flexible plugin system allows us to customize every aspect of the CMS to fit our specific use cases, including a built-in user system to manage detailed access for administrators and end-users.
 
 ## Authentication
-
 Currently, our project setup does not include direct examples of handling authentication in the provided code snippets. Authentication typically involves obtaining a JWT token from Strapi by sending a POST request to the `/auth/local` endpoint, which is not directly shown in the initial setup.
 
-## API Endpoints
-
+## Endpoints
 Here, we describe the API endpoints we have set up in Strapi, including how to interact with them to manage products, categories, and user data.
 
-
-#### Products Endpoint
-
-- **List Products**
-  Retrieve all products, utilizing Strapi's powerful query capabilities for filtering and pagination.
+Retrieve all products, utilizing Strapi's powerful query capabilities for filtering and pagination.
 
   ```http
   GET /products?pagination[page]=${currentPage}&pagination[pageSize]=${itemsPerPage}&
+  ```
 
-### Products
+### Fetch
+Here is how you might use React hooks to fetch data from our API, using Strapi as the backend.
+In our project, we've implemented two essential utilities, `useFetch` and `makeRequest`, to streamline the process of fetching data from our Strapi-powered API. Below is an in-depth look at each utility, demonstrating how they are constructed and how they function within our React application.
 
-We utilize Strapi to handle our product listings. The endpoints allow for listing all products with options for filtering and pagination, as well as fetching detailed information on individual products.
+useFetch is a custom React hook that we've developed to simplify the process of fetching data from the API, handling loading states, errors, and the response data. This hook is designed to be reusable across different components within our application, promoting code reusability and cleaner component structures.
 
+```javascript
+import { useEffect, useState } from "react";
+import { makeRequest } from "../makeRequest";
+
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [meta, setMeta] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const res = await makeRequest.get(url);
+        setData(res.data.data);
+        setMeta(res.data.meta);
+      } catch (err) {
+        setError(true);
+      }
+      setLoading(false);
+    };
+    fetchData();
+  }, [url]);
+
+  return { data, loading, error, meta };
+};
+
+export default useFetch;
+
+```
+
+### makeRequest.js
+The `makeRequest` utility is a configured instance of `axios`, a popular HTTP client for making requests to APIs. We've set it up to dynamically choose the base URL depending on whether the environment is in production or development mode. This setup ensures that API requests are directed to the correct server without manual changes to the codebase when moving from development to production.
+
+```javascript
+import axios from 'axios';
+
+// Environment-specific API URLs
+const apiUrl = import.meta.env.PROD
+  ? import.meta.env.VITE_API_URL_PROD
+  : import.meta.env.VITE_API_URL;
+
+// Axios instance creation
+export const makeRequest = axios.create({
+  baseURL: apiUrl,
+  headers: {
+    // Additional headers can be added here
+  },
+});
+```
+
+### ProductsList
+Here’s how you might use the useFetch hook in a component to fetch products:
+```javascript
+import { useEffect, useState } from "react";
+import ProductCard from "../CrossApp/ProductCard.jsx";
+import useFetch from "../../../hooks/useFetch.js";
+import filterstring from "../../helpers/filter.js";
+import Pages from "./Pages.jsx";
+import { useLocation } from "react-router-dom";
+
+
+const ProductsList = ({ catId, selectedFilter }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const location = useLocation();
+
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const pageParam = searchParams.get("page");
+
+    if (pageParam) {
+      setCurrentPage(parseInt(pageParam));
+    }
+  }, [location.search, currentPage]);
+
+  const itemsPerPage = 7;
+  const filterQuery = encodeURI(filterstring(selectedFilter));
+  const pagination = `pagination[page]=${currentPage}&pagination[pageSize]=${itemsPerPage}&`;
+  const categoryFilter = `&filters[categories][id][$eq]=${catId}`;
+
+  const { data, loading, error, meta } = useFetch(
+    `/products?` + pagination + filterQuery + categoryFilter + "&populate=*"
+  );
+
+  if (loading || !data) return <>Loading….</>;
+  if (error) return <>Error</>;
+  return (
+    <>
+      <div className="productsList flex justify-start flex-wrap">
+        <>
+          {data?.map((item) => (
+            <ProductCard item={item} key={item.id} />
+          ))}
+        </>
+      </div>
+      <div className=" flex justify-center w-full mt-9 text-lg">
+        <Pages currentPage={currentPage} maxPage={meta.pagination.pageCount} />
+      </div>
+    </>
+  );
+};
+
+export default ProductsList;
+
+```
+This example demonstrates how the useFetch hook can be utilized in a React component to fetch and display a list of products, handling loading states and errors gracefully.
+
+#### How it works
+- **useEffect Hook:** Automatically invokes the fetchData function whenever the url parameter changes. This design ensures that data fetching logic is encapsulated within the hook and is executed reactively based on dependency changes.
+- **Error Handling:** The hook sets an error state if the fetch operation fails, allowing components using this hook to respond appropriately to API errors.
+- **Loading State:** It manages a loading state that indicates whether the data is being fetched, which is useful for rendering loading indicators in the UI.
+- **Data and Meta States:** These states store the actual data returned from the API and any metadata associated with it, such as pagination data from Strapi.

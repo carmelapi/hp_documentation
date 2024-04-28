@@ -1,0 +1,197 @@
+# Backend Configuration Documentation
+Our project utilizes Strapi as the core backend CMS, designed to handle everything from content management to API services. This documentation provides an overview of our backend configuration, including environment settings, database configurations, middleware, and plugin integration.
+
+## Server Configuration
+Our server is configured to run on any host and a specified port, which is set up through environment variables. The key configuration ensures secure sessions and the setup includes webhooks which can be enabled or disabled as required.
+
+```javascript
+module.exports = ({ env }) => ({
+  host: env('HOST', '0.0.0.0'),
+  port: env.int('PORT', 1337),
+  app: {
+    keys: env.array('APP_KEYS'),
+  },
+  webhooks: {
+    populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
+  },
+});
+``` 
+
+## Database Configuration
+We use a dynamic configuration that can adapt to various database systems like SQLite, MySQL, and PostgreSQL. The connection details are managed through environment variables, allowing flexibility and ease of management, especially when dealing with different environments like development, staging, and production.
+```javascript
+const path = require("path");
+
+module.exports = ({ env }) => {
+  const client = env("DATABASE_CLIENT", "sqlite");
+
+  const connections = {
+    mysql: {
+      connection: {
+        connectionString: env("DATABASE_URL"),
+        host: env("DATABASE_HOST"),
+        port: env.int("DATABASE_PORT"),
+        database: env("DATABASE_NAME"),
+        user: env("DATABASE_USERNAME"),
+        password: env("DATABASE_PASSWORD"),
+        ssl: env.bool("DATABASE_SSL") && {
+          key: env("DATABASE_SSL_KEY", undefined),
+          cert: env("DATABASE_SSL_CERT", undefined),
+          ca: env("DATABASE_SSL_CA", undefined),
+          capath: env("DATABASE_SSL_CAPATH", undefined),
+          cipher: env("DATABASE_SSL_CIPHER", undefined),
+          rejectUnauthorized: env.bool(
+            "DATABASE_SSL_REJECT_UNAUTHORIZED",
+            true
+          ),
+        },
+      },
+      pool: {
+        min: env.int("DATABASE_POOL_MIN", 2),
+        max: env.int("DATABASE_POOL_MAX", 10),
+      },
+    },
+    mysql2: {
+      connection: {
+        host: env("DATABASE_HOST", "localhost"),
+        port: env.int("DATABASE_PORT", 3306),
+        database: env("DATABASE_NAME", "strapi"),
+        user: env("DATABASE_USERNAME", "strapi"),
+        password: env("DATABASE_PASSWORD", "strapi"),
+        ssl: env.bool("DATABASE_SSL", false) && {
+          key: env("DATABASE_SSL_KEY", undefined),
+          cert: env("DATABASE_SSL_CERT", undefined),
+          ca: env("DATABASE_SSL_CA", undefined),
+          capath: env("DATABASE_SSL_CAPATH", undefined),
+          cipher: env("DATABASE_SSL_CIPHER", undefined),
+          rejectUnauthorized: env.bool(
+            "DATABASE_SSL_REJECT_UNAUTHORIZED",
+            true
+          ),
+        },
+      },
+      pool: {
+        min: env.int("DATABASE_POOL_MIN", 2),
+        max: env.int("DATABASE_POOL_MAX", 10),
+      },
+    },
+    postgres: {
+      connection: {
+        connectionString: env("DATABASE_URL"),
+        host: env("DATABASE_HOST", "localhost"),
+        port: env.int("DATABASE_PORT", 5432),
+        database: env("DATABASE_NAME", "strapi"),
+        user: env("DATABASE_USERNAME", "strapi"),
+        password: env("DATABASE_PASSWORD", "strapi"),
+        ssl: env.bool("DATABASE_SSL", false) && {
+          key: env("DATABASE_SSL_KEY", undefined),
+          cert: env("DATABASE_SSL_CERT", undefined),
+          ca: env("DATABASE_SSL_CA", undefined),
+          capath: env("DATABASE_SSL_CAPATH", undefined),
+          cipher: env("DATABASE_SSL_CIPHER", undefined),
+          rejectUnauthorized: env.bool(
+            "DATABASE_SSL_REJECT_UNAUTHORIZED",
+            true
+          ),
+        },
+        schema: env("DATABASE_SCHEMA", "public"),
+      },
+      pool: {
+        min: env.int("DATABASE_POOL_MIN", 2),
+        max: env.int("DATABASE_POOL_MAX", 10),
+      },
+    },
+    sqlite: {
+      connection: {
+        filename: path.join(
+          __dirname,
+          "..",
+          env("DATABASE_FILENAME", ".tmp/data.db")
+        ),
+      },
+      useNullAsDefault: true,
+    },
+  };
+
+  return {
+    connection: {
+      client,
+      ...connections[client],
+      acquireConnectionTimeout: env.int("DATABASE_CONNECTION_TIMEOUT", 60000),
+    },
+  };
+};
+```
+
+## Plugin Integration
+Our project integrates several Strapi plugins for enhanced functionality. The most notable is the Cloudinary plugin for managing media uploads, which is configured to use environment variables for sensitive data.
+```javascript
+module.exports = ({ env }) => ({
+  // ...
+  upload: {
+    config: {
+      provider: "cloudinary",
+      providerOptions: {
+        cloud_name: env("CLOUDINARY_NAME"),
+        api_key: env("CLOUDINARY_KEY"),
+        api_secret: env("CLOUDINARY_SECRET"),
+      },
+      actionOptions: {
+        upload: {},
+        uploadStream: {},
+        delete: {},
+      },
+    },
+  },
+  // ...
+});
+```
+
+## Middleware Configuration
+To enhance security and performance, our Strapi setup includes several middlewares such as security settings, CORS, and body parsing. These are essential for ensuring that our API is not only robust but also secure from various web vulnerabilities.
+```javascript
+module.exports = [
+  "strapi::logger",
+  "strapi::errors",
+  {
+    name: "strapi::security",
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          "connect-src": ["'self'", "https:"],
+          "img-src": [
+            "'self'",
+            "data:",
+            "blob:",
+            "market-assets.strapi.io",
+            "res.cloudinary.com",
+          ],
+          "media-src": [
+            "'self'",
+            "data:",
+            "blob:",
+            "market-assets.strapi.io",
+            "res.cloudinary.com",
+          ],
+          upgradeInsecureRequests: null,
+        },
+      },
+    },
+  },
+  "strapi::cors",
+  "strapi::poweredBy",
+  "strapi::query",
+  "strapi::body",
+  "strapi::session",
+  "strapi::favicon",
+  "strapi::public",
+];
+
+```
+This documentation format provides a clear, structured overview of your Strapi backend setup, suitable for developers needing to understand or maintain the system.
+
+
+
+
+
