@@ -1,5 +1,7 @@
 {
-  "description":"Description",
-  "font":"Font",
-  "color": "Color"
+  "index": "Intro",
+  "tailwind": "Tailwind",
+  "font": "Font",
+  "color": "Color",
+  "components": "Components"
   }

@@ -1,7 +1,7 @@
 {
-  "gettingStarted": "🚀 Getting Started",
+  "index": "🚀 Getting Started",
   "systemRequirements": "System Requirement",
   "api": "API",
-  "designSystem":"Design System",
+  "designSystem": "Design System",
   "test": "Jest Test"
   }
