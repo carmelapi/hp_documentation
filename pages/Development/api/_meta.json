@@ -1,5 +1,6 @@
 {
   "introApi":"Introduction",
-  "restApi":"REST API",
+  "strapi":"Strapi",
+  "fetch":"Fetching Data",
   "backend":"Backend "
   }

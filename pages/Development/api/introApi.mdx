@@ -1,64 +1,57 @@
-import { FileTree, Steps, Callout} from 'nextra/components'
+import { Cards, Card } from 'nextra/components'
 
-# INTRO
-We have integrated Strapi into our project.  
-This is a popular open-source content management system (CMS) that allows us to rapidly create APIs through a user-friendly interface. It is based on Node.js and offers extensive flexibility as it can be customized to fit any SQL or NoSQL database.
+# API Documentation
 
-### What we wse Strapi for
+This documentation covers the essential aspects of our APIs, which are powered by Strapi, the headless CMS. Our API setup allows developers to use their preferred tools and frameworks, providing a flexible way for editors to manage and distribute content.
 
-**1. Rapid and Flexible API Development:** Strapi enables us to quickly build REST or GraphQL APIs. We can easily create custom endpoints, configure data relationships, and manage content types with ease.
+## Table of Contents
 
-**2. Headless CMS:** As a headless CMS, Strapi focuses solely on content management and delivery via APIs, making it ideal for integration with any front end, from static websites to mobile apps or IoT services.
+1. [Introduction](#introduction)
+2. [Authentication](#authentication)
+3. [API Endpoints](#api-endpoints)  
+   - [Products](#products)  
+   - [Categories](#categories)  
+   - [User Management](#user-management)
+4. [Code Examples](#code-examples)
+5. [Error Handling](#error-handling)
+6. [Best Practices](#best-practices)
+7. [FAQ](#faq)
+8. [Support and Contacts](#support-and-contacts)
 
-**3. Content Management:** Strapi provides a robust admin panel that allows our non-technical team members to easily manage content. This includes functionalities such as creating, updating, and deleting content, as well as managing users and customizing permissions.
+---
 
-**4. Plugins and Customization:** Strapi supports a wide range of plugins that extend its functionality, such as authentication, email, and file management. We also have the capability to write our own plugins to meet specific needs.
+## Introduction
 
-**5. Community and Support:** Being open source, Strapi has an active community of developers and users who constantly contribute new features, bug fixes, and support through forums and group chats.
+We have implemented Strapi as our CMS to enhance content management and distribution. Strapi's flexible plugin system allows us to customize every aspect of the CMS to fit our specific use cases, including a built-in user system to manage detailed access for administrators and end-users.
 
-We appreciate Strapi for its extensibility and scalability, making it a popular choice among developers looking for a modern CMS solution that can evolve as the needs of our project grow.
+## Authentication
 
-## How we install it
+Currently, our project setup does not include direct examples of handling authentication in the provided code snippets. Authentication typically involves obtaining a JWT token from Strapi by sending a POST request to the `/auth/local` endpoint, which is not directly shown in the initial setup.
 
-<Steps>
-### Part A: Create a new project with Strapi
-#### 
-We will first create a new Strapi project on our machine by running a command in the terminal, and then register our first local administrator user.
-```tsx
-npx create-strapi-app@latest my-project --quickstart
-```
-#### Register the first local administrator user
-Once the installation is complete, our browser automatically opens a new tab.
-By completing the form, we create our own account.
+## API Endpoints
 
-We now have access to the admin panel:
-
-![Strapi Admin Panel](../../../public/img/admin_panel.png)
+Here, we describe the API endpoints we have set up in Strapi, including how to interact with them to manage products, categories, and user data.
 
 
+#### Products Endpoint
 
-### Part B: Build your data structure with the Content-type Builder
-First we will build a data structure for the content. 
-The Content-Type Builder helps us create our data structure.
+- **List Products**
+  Retrieve all products, utilizing Strapi's powerful query capabilities for filtering and pagination.
 
-
-#### Create a collection type
- We need to create a collection type. 
- Then we can describe the fields to display when adding a new product:
-
-- Click on the Create your first Content type button.
-- If it's not showing up, go to Content-type Builder icon Content-type Builder in the main navigation.
-- Click on Create new collection type.
-- Click the Text field.
-- Type Name in the Name field.
-- Switch to the Advanced Settings tab, and check the Required field and the Unique field settings.
-- Click on Add another field.
-- Choose the Rich text (Blocks) field in the list.
-- Type Description under the Name field, then click Finish.
-- Finally, click Save and wait for Strapi to restart.
-
-![Strapi Categories](../../../public/img/strapi-categories.png)
+  ```http
+  GET /products?pagination[page]=1&pagination[pageSize]=10
+  Authorization: Bearer your-jwt-token-here
 
 
-</Steps>
+### Products
 
+We utilize Strapi to handle our product listings. The endpoints allow for listing all products with options for filtering and pagination, as well as fetching detailed information on individual products.
+
+<Cards>
+  <Card  title="Strapi" href="/pages/development/api/strapi.mdx" />
+</Cards>
+#### List Products
+
+```http
+GET /products?pagination[page]=1&pagination[pageSize]=10
+Authorization: Bearer your-jwt-token-here
