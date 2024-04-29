@@ -2,7 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/development/designSystem/components/skeleton": "pages/development/designSystem/components/skeleton.js",
-  "/development/test": "pages/development/test.js",
-  "/development/designSystem/components/productCard": "pages/development/designSystem/components/productCard.js"
+  "/": "pages/index.js"
 }
