@@ -3,7 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/development/designSystem/components/buttons": "pages/development/designSystem/components/buttons.js",
-  "/development/designSystem/color": "pages/development/designSystem/color.js",
   "/development/designSystem/components/productCard": "pages/development/designSystem/components/productCard.js",
-  "/development/designSystem/components/breadcrumbs": "pages/development/designSystem/components/breadcrumbs.js"
+  "/development/designSystem/components/breadcrumbs": "pages/development/designSystem/components/breadcrumbs.js",
+  "/": "pages/index.js"
 }
