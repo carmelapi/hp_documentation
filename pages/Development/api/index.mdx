@@ -3,7 +3,7 @@ import { Cards, Card } from 'nextra/components'
 # Historical Parts API Documentation
 
 ## Base URL
-`https://historical-parts.onrender.com/api/doors`
+`https://historical-parts.onrender.com/api/products`
 
 ## Authentication
 No authentication required.
@@ -11,59 +11,59 @@ No authentication required.
 ## Endpoints
 
 ### Pickup only
-- **Description**: Retrieves doors available for pickup only.
+- **Description**: Retrieves products available for pickup only.
 - **Method**: GET
-- **Endpoint**: `/api/doors?filters[ShippingOptions][$eq]=Pick up yourself`
+- **Endpoint**: `/api/products?filters[ShippingOptions][$eq]=Pick up yourself`
 
 ### Two conditions
-- **Description**: Retrieves doors in good or okay condition.
+- **Description**: Retrieves product sin good or okay condition.
 - **Method**: GET
-- **Endpoint**: `/api/doors?filters[$or][0][Condition][$eq]=Good condition&filters[$or][1][Condition][$eq]=Okay condition?populate=*`
+- **Endpoint**: `/api/products?filters[$or][0][Condition][$eq]=Good condition&filters[$or][1][Condition][$eq]=Okay condition?populate=*`
 
 ### Materials
-- **Description**: Retrieves doors made of steel or aluminum priced below 600 and available for pickup in Stockholm.
+- **Description**: Retrieves products made of steel or aluminum priced below 600 and available for pickup in Stockholm.
 - **Method**: GET
-- **Endpoint**: `/api/doors?filters[Price][$lt]=600&filters[Location][$eq]=Stockholm&filters[ShippingOptions][$eq]=Pick up yourself&filters[$or][0][Material][$eq]=Steel&filters[$or][1][Material][$eq]=Aluminum`
+- **Endpoint**: `/api/products?filters[Price][$lt]=600&filters[Location][$eq]=Stockholm&filters[ShippingOptions][$eq]=Pick up yourself&filters[$or][0][Material][$eq]=Steel&filters[$or][1][Material][$eq]=Aluminum`
 
 ### Less than 600 wood Stockholm and pickup only
-- **Description**: Retrieves doors made of wood priced below 600 located in Stockholm and available for pickup only.
+- **Description**: Retrieves products made of wood priced below 600 located in Stockholm and available for pickup only.
 - **Method**: GET
-- **Endpoint**: `/api/doors?filters[Price][$lt]=901&filters[Location][$eq]=Stockholm&filters[ShippingOptions][$eq]=Pick up yourself&filters[$or][0][Material][$eq]=Wood`
+- **Endpoint**: `/api/products?filters[Price][$lt]=901&filters[Location][$eq]=Stockholm&filters[ShippingOptions][$eq]=Pick up yourself&filters[$or][0][Material][$eq]=Wood`
 
 ### Two styles
-- **Description**: Retrieves doors from the C. 1880s New Renaissance or E. 1900-1910s Art Nouveau styles.
+- **Description**: Retrieves products from the C. 1880s New Renaissance or E. 1900-1910s Art Nouveau styles.
 - **Method**: GET
-- **Endpoint**: `/api/doors?filters[$or][0][Era][$eq]=C. 1880s New Renaissance&filters[$or][1][Era][$eq]=E. 1900-1910s Art Nouveau`
+- **Endpoint**: `/api/products?filters[$or][0][Era][$eq]=C. 1880s New Renaissance&filters[$or][1][Era][$eq]=E. 1900-1910s Art Nouveau`
 
 ### Price Less than 500 three styles
-- **Description**: Retrieves doors priced below 500 from three different styles: C. 1880s New Renaissance, E. 1900-1910s Art Nouveau, and I. 1940s-1950s Modernism Folkhem Architecture.
+- **Description**: Retrieves products priced below 500 from three different styles: C. 1880s New Renaissance, E. 1900-1910s Art Nouveau, and I. 1940s-1950s Modernism Folkhem Architecture.
 - **Method**: GET
-- **Endpoint**: `/api/doors?filters[Price][$lt]=500&filters[$or][0][Era][$eq]=C. 1880s New Renaissance&filters[$or][1][Era][$eq]=E. 1900-1910s Art Nouveau&filters[$or][2][Era][$eq]=I. 1940s-1950s Modernism Folkhem Architecture`
+- **Endpoint**: `/api/products?filters[Price][$lt]=500&filters[$or][0][Era][$eq]=C. 1880s New Renaissance&filters[$or][1][Era][$eq]=E. 1900-1910s Art Nouveau&filters[$or][2][Era][$eq]=I. 1940s-1950s Modernism Folkhem Architecture`
 
 ### Price less than 300 in Stockholm Pickup only
-- **Description**: Retrieves doors priced below 300 located in Stockholm and available for pickup only.
+- **Description**: Retrieves products priced below 300 located in Stockholm and available for pickup only.
 - **Method**: GET
-- **Endpoint**: `/api/doors?filters[Price][$lt]=300&filters[Location][$eq]=Stockholm&filters[ShippingOptions][$eq]=Pick up yourself`
+- **Endpoint**: `/api/products?filters[Price][$lt]=300&filters[Location][$eq]=Stockholm&filters[ShippingOptions][$eq]=Pick up yourself`
 
 ### Price less than 500
-- **Description**: Retrieves doors priced below 500.
+- **Description**: Retrieves products priced below 500.
 - **Method**: GET
-- **Endpoint**: `/api/doors?filters[Price][$lt]=500`
+- **Endpoint**: `/api/products?filters[Price][$lt]=500`
 
 ### Pickup and Stockholm
-- **Description**: Retrieves doors available for pickup in Stockholm.
+- **Description**: Retrieves products available for pickup in Stockholm.
 - **Method**: GET
-- **Endpoint**: `/api/doors?filters[ShippingOptions][$eq]=Pick up yourself&filters[Location][$eq]=Stockholm`
+- **Endpoint**: `/api/products?filters[ShippingOptions][$eq]=Pick up yourself&filters[Location][$eq]=Stockholm`
 
 ### Dropoff and Linköping
-- **Description**: Retrieves doors available for dropoff in Linköping.
+- **Description**: Retrieves products available for dropoff in Linköping.
 - **Method**: GET
-- **Endpoint**: `/api/doors?filters[ShippingOptions][$eq]=Get a shipping price&filters[Location][$eq]=Linköping`
+- **Endpoint**: `/api/products?filters[ShippingOptions][$eq]=Get a shipping price&filters[Location][$eq]=Linköping`
 
 ### Pickup and Stockholm and less than 500
-- **Description**: Retrieves doors priced below 500 available for pickup in Stockholm.
+- **Description**: Retrieves products priced below 500 available for pickup in Stockholm.
 - **Method**: GET
-- **Endpoint**: `/api/doors?filters[ShippingOptions][$eq]=Pick up yourself&filters[Location][$eq]=Stockholm&filters[Price][$lt]=500`
+- **Endpoint**: `/api/products?filters[ShippingOptions][$eq]=Pick up yourself&filters[Location][$eq]=Stockholm&filters[Price][$lt]=500`
 
 ## Headers
 - **User-Agent**: `insomnia/8.6.1`
