@@ -2,7 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/development/designSystem": "pages/development/designSystem.js",
-  "/development": "pages/development.js",
-  "/development/api": "pages/development/api.js"
+  "/development/designSystem/components/buttons": "pages/development/designSystem/components/buttons.js",
+  "/development/designSystem/color": "pages/development/designSystem/color.js",
+  "/development/designSystem/components/productCard": "pages/development/designSystem/components/productCard.js",
+  "/development/designSystem/components/breadcrumbs": "pages/development/designSystem/components/breadcrumbs.js"
 }

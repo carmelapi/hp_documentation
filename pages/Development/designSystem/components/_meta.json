@@ -1,6 +1,6 @@
-{
-  "breadcrumbs": "Breadcrumbs",
+{ 
   "buttons": "Buttons",
   "productCard": "Product Card",
-  "skeleton":"Skeleton"
+  "skeleton":"Skeleton",
+  "breadcrumbs": "Breadcrumbs"
   }

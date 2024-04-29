@@ -22,20 +22,25 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/development": [
+    "/development/designSystem/color": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/development.js"
+      "static/chunks/pages/development/designSystem/color.js"
     ],
-    "/development/api": [
+    "/development/designSystem/components/breadcrumbs": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/development/api.js"
+      "static/chunks/pages/development/designSystem/components/breadcrumbs.js"
     ],
-    "/development/designSystem": [
+    "/development/designSystem/components/buttons": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/development/designSystem.js"
+      "static/chunks/pages/development/designSystem/components/buttons.js"
+    ],
+    "/development/designSystem/components/productCard": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/development/designSystem/components/productCard.js"
     ]
   },
   "ampFirstPages": []
