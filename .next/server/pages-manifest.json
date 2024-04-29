@@ -2,7 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/development/designSystem/components/breadcrumbs": "pages/development/designSystem/components/breadcrumbs.js",
   "/development/designSystem/components/buttons": "pages/development/designSystem/components/buttons.js",
+  "/development/designSystem/components/breadcrumbs": "pages/development/designSystem/components/breadcrumbs.js",
   "/development/test": "pages/development/test.js"
 }
