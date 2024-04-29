@@ -27,10 +27,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/development/designSystem/components/buttons": [
+    "/development/designSystem": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/development/designSystem/components/buttons.js"
+      "static/chunks/pages/development/designSystem.js"
     ],
     "/development/designSystem/components/productCard": [
       "static/chunks/webpack.js",

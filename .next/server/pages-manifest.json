@@ -4,6 +4,6 @@
   "/_document": "pages/_document.js",
   "/development/designSystem/components/buttons": "pages/development/designSystem/components/buttons.js",
   "/development/designSystem/components/productCard": "pages/development/designSystem/components/productCard.js",
-  "/development/designSystem/components/breadcrumbs": "pages/development/designSystem/components/breadcrumbs.js",
-  "/": "pages/index.js"
+  "/": "pages/index.js",
+  "/development/designSystem": "pages/development/designSystem.js"
 }
