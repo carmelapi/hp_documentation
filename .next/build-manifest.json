@@ -22,10 +22,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/development/designSystem/components/breadcrumbs": [
+    "/development/designSystem/components/skeleton": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/development/designSystem/components/breadcrumbs.js"
+      "static/chunks/pages/development/designSystem/components/skeleton.js"
     ],
     "/development/test": [
       "static/chunks/webpack.js",
