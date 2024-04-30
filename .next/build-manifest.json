@@ -27,15 +27,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/development.js"
     ],
-    "/development/designSystem": [
+    "/development/designSystem/tailwind": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/development/designSystem.js"
-    ],
-    "/development/designSystem/components": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/development/designSystem/components.js"
+      "static/chunks/pages/development/designSystem/tailwind.js"
     ]
   },
   "ampFirstPages": []

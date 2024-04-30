@@ -2,7 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/development": "pages/development.js",
-  "/development/designSystem": "pages/development/designSystem.js",
-  "/development/designSystem/components": "pages/development/designSystem/components.js"
+  "/development/designSystem/tailwind": "pages/development/designSystem/tailwind.js",
+  "/development/systemRequirements": "pages/development/systemRequirements.js",
+  "/development": "pages/development.js"
 }
