@@ -1,4 +1,5 @@
 { 
+  "index": "Intro",
   "buttons": "Buttons",
   "productCard": "Product Card",
   "skeleton":"Skeleton",
