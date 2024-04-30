@@ -27,10 +27,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/development.js"
     ],
-    "/development/designSystem/tailwind": [
+    "/development/api/strapi": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/development/designSystem/tailwind.js"
+      "static/chunks/pages/development/api/strapi.js"
     ]
   },
   "ampFirstPages": []
